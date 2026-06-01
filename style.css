@@ -37,6 +37,7 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   overflow-x: hidden;
+  width: 100%;
 }
 body {
   font-family: var(--font-body);
@@ -44,6 +45,8 @@ body {
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 img {
   max-width: 100%;
@@ -409,6 +412,9 @@ select {
   text-transform: uppercase;
   margin-bottom: 20px;
   animation: fadeInUp 0.5s ease both;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
 }
 .hero h1 {
   font-family: var(--font-head);
@@ -1784,6 +1790,17 @@ select {
     position: static;
   }
 }
+
+/* Hide WhatsApp button text on mobile (640px) - keep icon visible */
+@media (max-width: 640px) {
+  .nav-right .btn-whatsapp span {
+    display: none;
+  }
+  .nav-right .btn-whatsapp {
+    padding: 8px 10px;
+  }
+}
+
 @media (max-width: 768px) {
   .top-bar {
     display: none;
@@ -1823,7 +1840,7 @@ select {
     display: flex;
   }
   .float-whatsapp {
-    bottom: 78px;
+    display: none;
   }
   body {
     padding-bottom: 64px;
