@@ -425,6 +425,34 @@ function initCartEvents() {
 
 // ── Init ────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
+  // DEBUG: Find overflow elements
+  const docWidth = document.documentElement.offsetWidth;
+  const overflowElements = [];
+  document.querySelectorAll("*").forEach((el) => {
+    if (el.offsetWidth > docWidth) {
+      overflowElements.push({
+        element: el,
+        tag: el.tagName,
+        class: el.className,
+        width: el.offsetWidth,
+        docWidth: docWidth,
+        overflow: el.offsetWidth - docWidth,
+      });
+      el.style.outline = "3px solid red";
+    }
+  });
+  if (overflowElements.length > 0) {
+    console.warn("🚨 OVERFLOW ELEMENTS FOUND:", overflowElements);
+    overflowElements.forEach((item) => {
+      console.log(
+        `${item.tag}.${item.class} - Width: ${item.width}px (${item.overflow}px over) vs Viewport: ${item.docWidth}px`,
+        item.element,
+      );
+    });
+  } else {
+    console.log("✅ No horizontal overflow detected!");
+  }
+
   initNavbar();
   initFAQ();
   initSearch();
